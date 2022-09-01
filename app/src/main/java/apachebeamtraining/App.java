@@ -3,12 +3,15 @@
  */
 package apachebeamtraining;
 
+import java.util.Date;
+import java.util.Iterator;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.DoFn;
 import org.apache.beam.sdk.transforms.GroupByKey;
+import org.apache.beam.sdk.transforms.GroupIntoBatches;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
@@ -48,7 +51,6 @@ public class App {
             c.output(String.valueOf(c.element()));
 
         }
-
     }
 
     /*
@@ -60,6 +62,45 @@ public class App {
             String row = c.element();
             String[] cells = row.split(",");
             c.output(KV.of(cells[0], row.length()));
+        }
+    }
+
+    /*
+     * String -> KV<String, CryptoCurrency>
+     */
+    static class ConvertTextIntoKVCryptoCurrencyFn
+            extends DoFn<String, KV<String, CryptoCurrency>> {
+        @ProcessElement
+        public void processElement(@Element String row,
+                OutputReceiver<KV<String, CryptoCurrency>> receiver) {
+            String[] cells = row.split(",");
+            try {
+                double amount = Double.parseDouble(cells[4]);
+                receiver.output(KV.of(cells[0], new CryptoCurrency(cells[0], amount)));
+            } catch (NumberFormatException ex) {
+                logger.error("failed to convert to CryptoCurrency", ex);
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                logger.error("failed to convert to CryptoCurrency", ex);
+            }
+        }
+    }
+
+    /*
+     * Process item in a batch. Just count the number of item and return BatchResult as String.
+     */
+    static class ProcessBatch extends DoFn<KV<String, Iterable<CryptoCurrency>>, String> {
+        @ProcessElement
+        public void process(@Element KV<String, Iterable<CryptoCurrency>> batch,
+                OutputReceiver<String> receiver) {
+            int count = 0;
+            Iterator<CryptoCurrency> iter = batch.getValue().iterator();
+            while (iter.hasNext()) {
+                count++;
+                iter.next();
+            }
+            BatchResult batchResult =
+                    new BatchResult(batch.getKey(), count, new Date(System.currentTimeMillis()));
+            receiver.output(batchResult.toString());
         }
     }
 
@@ -83,6 +124,14 @@ public class App {
         // Process2: Extract the amount of each line and write it to the file.
         PCollection<String> bidData = textData.apply(ParDo.of(new ExtractAmountFromRowFn()));
         bidData.apply(TextIO.write().to("output-map"));
+
+        // Process3: GroupIntoBatches
+        PCollection<KV<String, CryptoCurrency>> cryptoKV =
+                textData.apply(ParDo.of(new ConvertTextIntoKVCryptoCurrencyFn()));
+        PCollection<KV<String, Iterable<CryptoCurrency>>> batchedCrypt =
+                cryptoKV.apply(GroupIntoBatches.<String, CryptoCurrency>ofSize(3));
+        PCollection<String> output = batchedCrypt.apply(ParDo.of(new ProcessBatch()));
+        output.apply(TextIO.write().to("output-count"));
 
         p.run().waitUntilFinish();
     }
