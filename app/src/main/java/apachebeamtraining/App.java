@@ -8,21 +8,48 @@ import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.DoFn;
+import org.apache.beam.sdk.transforms.GroupByKey;
+import org.apache.beam.sdk.transforms.MapElements;
 import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.transforms.SimpleFunction;
+import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class App {
-    public static class ExtractBid extends DoFn<String, String> {
+
+    private static Logger logger = LoggerFactory.getLogger(App.class);
+
+    public static class ExtractAmountFromRowFn extends DoFn<String, String> {
         @ProcessElement
-        public void process(ProcessContext c){
+        public void process(ProcessContext c) {
 
-            String row = c.element();
+            try {
+                String row = c.element();
 
-            String[] cells = row.split(",");
+                String[] cells = row.split(",");
 
-            c.output(cells[4]);
+                c.output(cells[4]);
+            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                logger.error("Failed to process data", e);
+            }
         }
     }
+
+    /**
+     * KV<String, Iterable<Integer> -> String
+     */
+    static class ConvertKVToStringFn extends DoFn<KV<String, Iterable<Integer>>, String> {
+        @ProcessElement
+        public void processElement(ProcessContext c) {
+
+            c.output(String.valueOf(c.element()));
+
+        }
+
+    }
+
     public static void main(String[] args) {
 
         PipelineOptions options = PipelineOptionsFactory.create();
@@ -31,9 +58,24 @@ public class App {
 
         PCollection<String> textData = p.apply(TextIO.read().from("input-record.txt"));
 
-        PCollection<String> bidData = textData.apply(ParDo.of(new ExtractBid()));
+        PCollection<KV<String, Integer>> mapped =
+                textData.apply(MapElements.via(new SimpleFunction<String, KV<String, Integer>>() {
+                    @Override
+                    public KV<String, Integer> apply(String line) {
+                        String[] cells = line.split(",");
 
-        bidData.apply(TextIO.write().to("output"));
+                        return KV.of(cells[0], line.length());
+                    }
+                }));
+
+        PCollection<KV<String, Iterable<Integer>>> groupByKey = mapped.apply(GroupByKey.<String, Integer>create());
+        PCollection<String> count = groupByKey.apply(ParDo.of(new ConvertKVToStringFn()));
+
+        count.apply(TextIO.write().to("output-aggregated"));
+
+        PCollection<String> bidData = textData.apply(ParDo.of(new ExtractAmountFromRowFn()));
+
+        bidData.apply(TextIO.write().to("output-map"));
 
         p.run().waitUntilFinish();
     }
