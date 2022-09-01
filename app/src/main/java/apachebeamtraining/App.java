@@ -3,12 +3,27 @@
  */
 package apachebeamtraining;
 
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.io.TextIO;
+import org.apache.beam.sdk.options.PipelineOptions;
+import org.apache.beam.sdk.options.PipelineOptionsFactory;
+import org.apache.beam.sdk.values.PCollection;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        PipelineOptions options = PipelineOptionsFactory.create();
+
+        Pipeline p = Pipeline.create(options);
+
+        PCollection<String> textData = p.apply(TextIO.read().from("Sample.txt"));
+
+        textData.apply(TextIO.write().to("wordcounts"));
+
+        p.run().waitUntilFinish();
     }
 }

@@ -14,6 +14,10 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+
+    maven {
+        url = uri("https://packages.confluent.io/maven/")
+    }
 }
 
 dependencies {
@@ -22,6 +26,13 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.0.1-jre")
+
+    // https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core
+    implementation("org.apache.beam:beam-sdks-java-core:2.41.0")
+
+    // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
+    runtimeOnly("org.apache.beam:beam-runners-direct-java:2.41.0")
+
 }
 
 application {
@@ -32,4 +43,15 @@ application {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+if (project.hasProperty("dataflow-runner")) {
+    dependencies {
+        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.41.0")
+    }
+}
+
+task("execute", JavaExec::class) {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set(System.getProperty("mainClass"))
 }
