@@ -7,22 +7,33 @@ import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
+import org.apache.beam.sdk.transforms.DoFn;
+import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    public static class ExtractBid extends DoFn<String, String> {
+        @ProcessElement
+        public void process(ProcessContext c){
 
+            String row = c.element();
+
+            String[] cells = row.split(",");
+
+            c.output(cells[4]);
+        }
+    }
     public static void main(String[] args) {
 
         PipelineOptions options = PipelineOptionsFactory.create();
 
         Pipeline p = Pipeline.create(options);
 
-        PCollection<String> textData = p.apply(TextIO.read().from("Sample.txt"));
+        PCollection<String> textData = p.apply(TextIO.read().from("input-record.txt"));
 
-        textData.apply(TextIO.write().to("wordcounts"));
+        PCollection<String> bidData = textData.apply(ParDo.of(new ExtractBid()));
+
+        bidData.apply(TextIO.write().to("output"));
 
         p.run().waitUntilFinish();
     }
