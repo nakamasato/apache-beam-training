@@ -433,3 +433,4 @@ static class ConvertKVToStringFn extends DoFn<KV<String, Iterable<Integer>>, Str
 # References
 
 1. https://www.youtube.com/c/ApacheBeamYT/videos
+1. https://medium.com/@vallerylancey/error-handling-elements-in-apache-beam-pipelines-fffdea91af2a

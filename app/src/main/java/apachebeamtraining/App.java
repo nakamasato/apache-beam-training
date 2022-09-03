@@ -15,6 +15,7 @@ import org.apache.beam.sdk.transforms.GroupIntoBatches;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
+import org.apache.beam.sdk.values.PCollectionTuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -130,6 +131,13 @@ public class App {
         cryptoKV.apply(GroupIntoBatches.<String, CryptoCurrency>ofSize(3));
     PCollection<String> output = batchedCrypt.apply(ParDo.of(new ProcessBatch()));
     output.apply(TextIO.write().to("output-count"));
+
+    // Process4: Use MultipleOutput
+    PCollectionTuple outputTuple = MultipleOutput.process(batchedCrypt);
+    PCollection<String> success = outputTuple.get(MultipleOutput.validTag);
+    PCollection<String> failure = outputTuple.get(MultipleOutput.failuresTag);
+    success.apply(TextIO.write().to("output-success"));
+    failure.apply(TextIO.write().to("output-failure"));
 
     p.run().waitUntilFinish();
   }
