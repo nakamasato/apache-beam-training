@@ -22,8 +22,17 @@
 
 # References
 
-1. https://www.youtube.com/c/ApacheBeamYT/videos
-1. https://medium.com/@vallerylancey/error-handling-elements-in-apache-beam-pipelines-fffdea91af2a
-1. https://www.linuxdeveloper.space/retry-apache-beam-flink/
-1. https://medium.com/@bravnic/apache-beam-fundamentals-765ea5b59565
-1. https://stackoverflow.com/questions/53392311/apache-beam-retrytransienterrors-neverretry-does-not-respect-table-not-found-err
+1. Study Resource:
+    1. https://www.youtube.com/c/ApacheBeamYT/videos
+1. Error Handling:
+    1. https://medium.com/@vallerylancey/error-handling-elements-in-apache-beam-pipelines-fffdea91af2a
+    1. https://www.linuxdeveloper.space/retry-apache-beam-flink/
+    1. https://medium.com/@bravnic/apache-beam-fundamentals-765ea5b59565
+    1. https://stackoverflow.com/questions/53392311/apache-beam-retrytransienterrors-neverretry-does-not-respect-table-not-found-err
+1. Examples:
+    1. https://github.com/apache/beam/tree/master/examples/java
+    1. https://medium.com/google-cloud/bigtable-beam-dataflow-cryptocurrencies-gcp-terraform-java-maven-4e7873811e86
+    1. https://github.com/GoogleCloudPlatform/DataflowTemplates/tree/main/v2/googlecloud-to-elasticsearch/docs/PubSubToElasticsearch
+1. IO:
+    1. https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/introduction.html
+    1. https://github.com/GoogleCloudPlatform/DataflowTemplates/blob/main/v2/elasticsearch-common/src/main/java/com/google/cloud/teleport/v2/elasticsearch/utils/ElasticsearchIO.java#L1100
