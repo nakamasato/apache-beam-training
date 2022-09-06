@@ -135,9 +135,14 @@ public class App {
     // Process4: Use MultipleOutput
     PCollectionTuple outputTuple = MultipleOutput.process(batchedCrypt);
     PCollection<String> success = outputTuple.get(MultipleOutput.validTag);
-    PCollection<String> failure = outputTuple.get(MultipleOutput.failuresTag);
+    PCollection<Failure> failure = outputTuple.get(MultipleOutput.failuresTag);
     success.apply(TextIO.write().to("output-success"));
-    failure.apply(TextIO.write().to("output-failure"));
+    failure.apply(ParDo.of(new DoFn<Failure, String>() {
+      @ProcessElement
+      public void processElement(@Element Failure failure, OutputReceiver<String> out) {
+        out.output(failure.toString());
+      }
+    })).apply(TextIO.write().to("output-failure"));
 
     p.run().waitUntilFinish();
   }

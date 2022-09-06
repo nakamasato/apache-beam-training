@@ -1,8 +1,9 @@
 package apachebeamtraining;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Failure {
+public class Failure implements Serializable {
   private String failedClass;
   private String message;
   private String precursorDataString;
