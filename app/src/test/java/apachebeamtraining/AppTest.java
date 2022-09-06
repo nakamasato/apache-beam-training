@@ -3,12 +3,73 @@
  */
 package apachebeamtraining;
 
+import java.util.Arrays;
+import java.util.List;
+import org.apache.beam.sdk.Pipeline;
+import org.apache.beam.sdk.testing.PAssert;
+import org.apache.beam.sdk.transforms.Create;
+import org.apache.beam.sdk.transforms.GroupByKey;
+import org.apache.beam.sdk.transforms.GroupIntoBatches;
+import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.values.KV;
+import org.apache.beam.sdk.values.PCollection;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        // assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+public class AppTest {
+
+    // Our static input data, which will make up the initial PCollection.
+    static final String[] INPUT_ARRAY =
+            new String[] {"BTC/JPY,bitflyer,1519845731987,1127174.0,1126166.0",
+                    "ETH/JPY,bitflyer,1519845742363,1127470.0,1126176.0",
+                    "BTC/JPY,bitflyer,1519845752427,1127601.0,1126227.0",
+                    "ETH/JPY,bitflyer,1519845762038,1127591.0,1126316.0",
+                    "BTC/JPY,bitflyer,1519845772637,1127801.0,1126368.0", "wronglyformatedrecord",};
+
+    static final List<String> ROWS = Arrays.asList(INPUT_ARRAY);
+
+    /**
+     * Test Process1: Group by the cryptocurrency name and write each line length
+     */
+    @Test
+    public void testProcess1() {
+        // Create a test pipeline.
+        Pipeline p = Pipeline.create();
+
+        // Create an input PCollection.
+        PCollection<String> textData = p.apply(Create.of(ROWS));
+
+        PCollection<KV<String, Integer>> mapped =
+                textData.apply(ParDo.of(new App.ConvertStringIntoKVFn()));
+        PCollection<KV<String, Iterable<Integer>>> groupByKey =
+                mapped.apply(GroupByKey.<String, Integer>create());
+        PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertKVToStringFn()));
+
+        // Assert on the results.
+        PAssert.that(count).containsInAnyOrder("KV{BTC/JPY, [50, 50, 50]}", "KV{ETH/JPY, [50, 50]}",
+                "KV{wronglyformatedrecord, [21]}");
+
+        // Run the pipeline.
+        p.run();
+    }
+
+    /**
+     * Test Process2: ExtractAmountFromRowFn
+     */
+    @Test
+    public void testProcess2() {
+        // Create a test pipeline.
+        Pipeline p = Pipeline.create();
+
+        // Create an input PCollection.
+        PCollection<String> textData = p.apply(Create.of(ROWS));
+
+        PCollection<String> bidData = textData.apply(ParDo.of(new App.ExtractAmountFromRowFn()));
+
+        // Assert on the results.
+        PAssert.that(bidData).containsInAnyOrder("1126166.0", "1126176.0", "1126227.0", "1126316.0",
+                "1126368.0");
+
+        // Run the pipeline.
+        p.run();
     }
 }

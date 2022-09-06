@@ -33,6 +33,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
     runtimeOnly("org.apache.beam:beam-runners-direct-java:2.41.0")
 
+    // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
+    testImplementation("org.hamcrest:hamcrest:2.2")
 }
 
 application {
