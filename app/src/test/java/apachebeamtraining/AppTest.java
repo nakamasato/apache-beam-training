@@ -7,8 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.testing.PAssert;
-import org.apache.beam.sdk.transforms.Count;
 import org.apache.beam.sdk.transforms.Create;
+import org.apache.beam.sdk.transforms.GroupByKey;
+import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,14 @@ import org.junit.jupiter.api.Test;
 public class AppTest {
 
     // Our static input data, which will make up the initial PCollection.
-    static final String[] WORDS_ARRAY = new String[] {"hi", "there", "hi", "hi", "sue", "bob", "hi",
-            "sue", "", "", "ZOW", "bob", ""};
+    static final String[] INPUT_ARRAY =
+            new String[] {"BTC/JPY,bitflyer,1519845731987,1127174.0,1126166.0",
+                    "ETH/JPY,bitflyer,1519845742363,1127470.0,1126176.0",
+                    "BTC/JPY,bitflyer,1519845752427,1127601.0,1126227.0",
+                    "ETH/JPY,bitflyer,1519845762038,1127591.0,1126316.0",
+                    "BTC/JPY,bitflyer,1519845772637,1127801.0,1126368.0", "wronglyformatedrecord",};
 
-    static final List<String> WORDS = Arrays.asList(WORDS_ARRAY);
+    static final List<String> ROWS = Arrays.asList(INPUT_ARRAY);
 
     @Test
     public void testCount() {
@@ -27,14 +32,17 @@ public class AppTest {
         Pipeline p = Pipeline.create();
 
         // Create an input PCollection.
-        PCollection<String> input = p.apply(Create.of(WORDS));
+        PCollection<String> input = p.apply(Create.of(ROWS));
 
-        // Apply the Count transform under test.
-        PCollection<KV<String, Long>> output = input.apply(Count.<String>perElement());
+        PCollection<KV<String, Integer>> mapped =
+                input.apply(ParDo.of(new App.ConvertStringIntoKVFn()));
+        PCollection<KV<String, Iterable<Integer>>> groupByKey =
+                mapped.apply(GroupByKey.<String, Integer>create());
+        PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertKVToStringFn()));
 
         // Assert on the results.
-        PAssert.that(output).containsInAnyOrder(KV.of("hi", 4L), KV.of("there", 1L),
-                KV.of("sue", 2L), KV.of("bob", 2L), KV.of("", 3L), KV.of("ZOW", 1L));
+        PAssert.that(count).containsInAnyOrder("KV{BTC/JPY, [50, 50, 50]}", "KV{ETH/JPY, [50, 50]}",
+                "KV{wronglyformatedrecord, [21]}");
 
         // Run the pipeline.
         p.run();
