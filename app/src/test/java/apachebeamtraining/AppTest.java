@@ -9,6 +9,7 @@ import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.testing.PAssert;
 import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.GroupByKey;
+import org.apache.beam.sdk.transforms.GroupIntoBatches;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
@@ -26,16 +27,19 @@ public class AppTest {
 
     static final List<String> ROWS = Arrays.asList(INPUT_ARRAY);
 
+    /**
+     * Test Process1: Group by the cryptocurrency name and write each line length
+     */
     @Test
-    public void testCount() {
+    public void testProcess1() {
         // Create a test pipeline.
         Pipeline p = Pipeline.create();
 
         // Create an input PCollection.
-        PCollection<String> input = p.apply(Create.of(ROWS));
+        PCollection<String> textData = p.apply(Create.of(ROWS));
 
         PCollection<KV<String, Integer>> mapped =
-                input.apply(ParDo.of(new App.ConvertStringIntoKVFn()));
+                textData.apply(ParDo.of(new App.ConvertStringIntoKVFn()));
         PCollection<KV<String, Iterable<Integer>>> groupByKey =
                 mapped.apply(GroupByKey.<String, Integer>create());
         PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertKVToStringFn()));
@@ -43,6 +47,27 @@ public class AppTest {
         // Assert on the results.
         PAssert.that(count).containsInAnyOrder("KV{BTC/JPY, [50, 50, 50]}", "KV{ETH/JPY, [50, 50]}",
                 "KV{wronglyformatedrecord, [21]}");
+
+        // Run the pipeline.
+        p.run();
+    }
+
+    /**
+     * Test Process2: ExtractAmountFromRowFn
+     */
+    @Test
+    public void testProcess2() {
+        // Create a test pipeline.
+        Pipeline p = Pipeline.create();
+
+        // Create an input PCollection.
+        PCollection<String> textData = p.apply(Create.of(ROWS));
+
+        PCollection<String> bidData = textData.apply(ParDo.of(new App.ExtractAmountFromRowFn()));
+
+        // Assert on the results.
+        PAssert.that(bidData).containsInAnyOrder("1126166.0", "1126176.0", "1126227.0", "1126316.0",
+                "1126368.0");
 
         // Run the pipeline.
         p.run();
