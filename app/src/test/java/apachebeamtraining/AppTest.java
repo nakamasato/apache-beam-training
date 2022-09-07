@@ -9,11 +9,11 @@ import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.testing.PAssert;
 import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.GroupByKey;
-import org.apache.beam.sdk.transforms.GroupIntoBatches;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
 import org.junit.jupiter.api.Test;
+
 
 public class AppTest {
 
@@ -42,7 +42,7 @@ public class AppTest {
                 textData.apply(ParDo.of(new App.ConvertStringIntoKVFn()));
         PCollection<KV<String, Iterable<Integer>>> groupByKey =
                 mapped.apply(GroupByKey.<String, Integer>create());
-        PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertKVToStringFn()));
+        PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertToStringFn<KV<String, Iterable<Integer>>>()));
 
         // Assert on the results.
         PAssert.that(count).containsInAnyOrder("KV{BTC/JPY, [50, 50, 50]}", "KV{ETH/JPY, [50, 50]}",
