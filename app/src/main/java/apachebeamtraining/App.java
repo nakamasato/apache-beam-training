@@ -133,9 +133,10 @@ public class App {
 
     // Process4: Use MultipleOutput
     PCollectionTuple outputTuple = MultipleOutput.process(batchedCrypt);
-    PCollection<String> success = outputTuple.get(MultipleOutput.validTag);
+    PCollection<BatchResult> success = outputTuple.get(MultipleOutput.validTag);
     PCollection<Failure> failure = outputTuple.get(MultipleOutput.failureTag);
-    success.apply(TextIO.write().to("output-success"));
+    success.apply(ParDo.of(new ConvertToStringFn<BatchResult>()))
+        .apply(TextIO.write().to("output-success"));
     failure.apply(ParDo.of(new ConvertToStringFn<Failure>()))
         .apply(TextIO.write().to("output-failure"));
 

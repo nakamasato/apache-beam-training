@@ -108,7 +108,7 @@ In this lecture, we'll return different types.
     ```java
         PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertToStringFn<KV<String, Iterable<Integer>>>()));
     ```
-1. Run `./gradlew run` -> failure
+1. Run `./gradlew run` -> Error
 
     ```
     SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
@@ -129,4 +129,49 @@ In this lecture, we'll return different types.
             at org.apache.beam.sdk.values.PCollection.apply(PCollection.java:363)
             at apachebeamtraining.App.main(App.java:140)
     ```
-1. 
+1. Add `implements Serializable` to `Failure`
+1. Run `./gradlew run` -> Error
+
+    ```
+    SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+    SLF4J: Defaulting to no-operation (NOP) logger implementation
+    SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+    Exception in thread "main" org.apache.beam.sdk.util.IllegalMutationException: PTransform MapElements/Map/ParMultiDo(Anonymous) illegaly mutated value key:ETH/JPY, count:3, completedAt:2022-09-07 at 10:23:049 JST of class class apachebeamtraining.BatchResult. Input values must not be mutated in any way.
+            at org.apache.beam.runners.direct.ImmutabilityEnforcementFactory$ImmutabilityCheckingEnforcement.verifyUnmodified(ImmutabilityEnforcementFactory.java:154)
+            at org.apache.beam.runners.direct.ImmutabilityEnforcementFactory$ImmutabilityCheckingEnforcement.afterElement(ImmutabilityEnforcementFactory.java:131)
+            at org.apache.beam.runners.direct.DirectTransformExecutor.processElements(DirectTransformExecutor.java:175)
+            at org.apache.beam.runners.direct.DirectTransformExecutor.run(DirectTransformExecutor.java:129)
+            at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+            at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+            at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+            at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+            at java.base/java.lang.Thread.run(Thread.java:829)
+    ```
+1. Change to use `SimpleDateFormat` in the method.
+
+    ```java
+    package apachebeamtraining;
+
+    import java.io.Serializable;
+    import java.text.SimpleDateFormat;
+    import java.util.Date;
+
+    public class BatchResult implements Serializable {
+      private int count;
+      private String key;
+      private Date completedAt;
+
+      public BatchResult(String key, int count, Date completedAt) {
+        this.key = key;
+        this.count = count;
+        this.completedAt = completedAt;
+      }
+
+      public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:sss z");
+        return String.format("key:%s, count:%d, completedAt:%s", key, count,
+            formatter.format(completedAt));
+      }
+    }
+    ```
+1. `./gradlew run` -> Success.

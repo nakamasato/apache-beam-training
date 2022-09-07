@@ -1,13 +1,13 @@
 package apachebeamtraining;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BatchResult {
+public class BatchResult implements Serializable {
   private int count;
   private String key;
   private Date completedAt;
-  private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:sss z");
 
   public BatchResult(String key, int count, Date completedAt) {
     this.key = key;
@@ -16,6 +16,7 @@ public class BatchResult {
   }
 
   public String toString() {
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:sss z");
     return String.format("key:%s, count:%d, completedAt:%s", key, count,
         formatter.format(completedAt));
   }
