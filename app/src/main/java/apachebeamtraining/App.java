@@ -43,14 +43,12 @@ public class App {
   }
 
   /**
-   * KV<String, Iterable<Integer> -> String
+   * T -> String
    */
-  static class ConvertKVToStringFn extends DoFn<KV<String, Iterable<Integer>>, String> {
+  static class ConvertToStringFn<T> extends DoFn<T, String> {
     @ProcessElement
-    public void processElement(ProcessContext c) {
-
-      c.output(String.valueOf(c.element()));
-
+    public void processElement(@Element T e, OutputReceiver<String> receiver) {
+      receiver.output(e.toString());
     }
   }
 
@@ -117,7 +115,8 @@ public class App {
     PCollection<KV<String, Integer>> mapped = textData.apply(ParDo.of(new ConvertStringIntoKVFn()));
     PCollection<KV<String, Iterable<Integer>>> groupByKey =
         mapped.apply(GroupByKey.<String, Integer>create());
-    PCollection<String> count = groupByKey.apply(ParDo.of(new ConvertKVToStringFn()));
+    PCollection<String> count =
+        groupByKey.apply(ParDo.of(new ConvertToStringFn<KV<String, Iterable<Integer>>>()));
     count.apply(TextIO.write().to("output-aggregated"));
 
     // Process2: Extract the amount of each line and write it to the file.
@@ -135,14 +134,10 @@ public class App {
     // Process4: Use MultipleOutput
     PCollectionTuple outputTuple = MultipleOutput.process(batchedCrypt);
     PCollection<String> success = outputTuple.get(MultipleOutput.validTag);
-    PCollection<Failure> failure = outputTuple.get(MultipleOutput.failuresTag);
+    PCollection<Failure> failure = outputTuple.get(MultipleOutput.failureTag);
     success.apply(TextIO.write().to("output-success"));
-    failure.apply(ParDo.of(new DoFn<Failure, String>() {
-      @ProcessElement
-      public void processElement(@Element Failure failure, OutputReceiver<String> out) {
-        out.output(failure.toString());
-      }
-    })).apply(TextIO.write().to("output-failure"));
+    failure.apply(ParDo.of(new ConvertToStringFn<Failure>()))
+        .apply(TextIO.write().to("output-failure"));
 
     p.run().waitUntilFinish();
   }

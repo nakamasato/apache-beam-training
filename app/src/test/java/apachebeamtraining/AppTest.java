@@ -14,6 +14,7 @@ import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
 import org.junit.jupiter.api.Test;
 
+
 public class AppTest {
 
     // Our static input data, which will make up the initial PCollection.
@@ -41,7 +42,7 @@ public class AppTest {
                 textData.apply(ParDo.of(new App.ConvertStringIntoKVFn()));
         PCollection<KV<String, Iterable<Integer>>> groupByKey =
                 mapped.apply(GroupByKey.<String, Integer>create());
-        PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertKVToStringFn()));
+        PCollection<String> count = groupByKey.apply(ParDo.of(new App.ConvertToStringFn<KV<String, Iterable<Integer>>>()));
 
         // Assert on the results.
         PAssert.that(count).containsInAnyOrder("KV{BTC/JPY, [50, 50, 50]}", "KV{ETH/JPY, [50, 50]}",

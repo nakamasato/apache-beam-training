@@ -12,8 +12,7 @@ import org.apache.beam.sdk.values.TupleTagList;
 
 public class MultipleOutput extends DoFn<KV<String, Iterable<CryptoCurrency>>, String> {
   public static final TupleTag<String> validTag = new TupleTag<String>() {};
-  public static final TupleTag<Failure> failuresTag = new TupleTag<Failure>() {};
-
+  public static final TupleTag<Failure> failureTag = new TupleTag<Failure>() {};
 
   public static PCollectionTuple process(PCollection<KV<String, Iterable<CryptoCurrency>>> batch) {
     return batch.apply("Create PubSub objects",
@@ -33,16 +32,14 @@ public class MultipleOutput extends DoFn<KV<String, Iterable<CryptoCurrency>>, S
 
               BatchResult batchResult =
                   new BatchResult(batch.getKey(), count, new Date(System.currentTimeMillis()));
-              // c.output(batchResult.toString());
               out.get(validTag).output(batchResult.toString());
 
             } catch (Throwable throwable) {
               Failure failure = new Failure(batch, batch, throwable);
-              // c.output(failuresTag, failure);
-              out.get(failuresTag).output(failure);
+              out.get(failureTag).output(failure);
             }
 
           }
-        }).withOutputTags(validTag, TupleTagList.of(failuresTag)));
+        }).withOutputTags(validTag, TupleTagList.of(failureTag)));
   }
 }
