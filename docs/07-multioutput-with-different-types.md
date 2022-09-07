@@ -1,4 +1,4 @@
-# 7. MultiOutput with different types
+# [7. MultiOutput with different types](https://github.com/nakamasato/apache-beam-training/tree/dcc4a3a5be9e2bfbf54e5936b3f9adac45e2b9c6)
 
 In the last section [6. MultiOutput: Failure Handling](06-multioutput-failure-handling.md), `MultipleOutput` returned the same type `String`:
 ```java

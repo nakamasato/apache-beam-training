@@ -1,4 +1,4 @@
-# 5. KV with custom class and GroupIntoBatches
+# [5. KV with custom class and GroupIntoBatches](https://github.com/nakamasato/apache-beam-training/tree/12f7aa277487eb0365cdfb7d72a96fa99eb9cfe2)
 
 - [GroupIntoBatches](https://beam.apache.org/releases/javadoc/2.0.0/org/apache/beam/sdk/transforms/GroupIntoBatches.html): A PTransform that batches inputs to a desired batch size. Batches will contain only elements of a single key.
 
