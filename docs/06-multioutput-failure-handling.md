@@ -1,4 +1,4 @@
-# 6. MultiOutput: Failure Handling
+# [6. MultiOutput: Failure Handling](https://github.com/nakamasato/apache-beam-training/tree/2f6a9437e25dbb8046a9739515306924a8facd13)
 
 1. Create `Failure`
     ```java

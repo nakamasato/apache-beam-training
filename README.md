@@ -19,7 +19,7 @@
 1. [MapElement.via(new SimpleFunction) <-> ParDo + DoFn](docs/04-mapelement-simplefunction-pardo-dofn.md)
 1. [KV with Custom Class and GroupIntoBatches](docs/05-kv-with-custom-class-and-groupintobatches.md)
 1. [MultiOutput: Failure Handling](docs/06-multioutput-failure-handling.md)
-
+1. [MultiOutput: with differnt types](docs/07-multioutput-with-different-types.md)
 # References
 
 1. Study Resource:
@@ -36,3 +36,8 @@
 1. IO:
     1. https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/introduction.html
     1. https://github.com/GoogleCloudPlatform/DataflowTemplates/blob/main/v2/elasticsearch-common/src/main/java/com/google/cloud/teleport/v2/elasticsearch/utils/ElasticsearchIO.java#L1100
+1. Coder
+    1. https://github.com/apache/beam/pull/663
+    1. https://github.com/GoogleCloudPlatform/DataflowJavaSDK/issues/298
+    1. https://timbrowndatablog.medium.com/apache-beam-coder-performance-4415cd0a1030
+    1. https://stackoverflow.com/questions/28032063/how-to-fix-dataflow-unable-to-serialize-my-dofn
