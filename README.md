@@ -24,6 +24,7 @@
 
 1. Study Resource:
     1. https://www.youtube.com/c/ApacheBeamYT/videos
+    1. [Streaming Engine: Execution Model for Highly-Scalable, Low-Latency Data Processing](https://medium.com/google-cloud/streaming-engine-execution-model-1eb2eef69a8e)
 1. Error Handling:
     1. https://medium.com/@vallerylancey/error-handling-elements-in-apache-beam-pipelines-fffdea91af2a
     1. https://www.linuxdeveloper.space/retry-apache-beam-flink/
