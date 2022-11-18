@@ -2,7 +2,7 @@
 
 ## Versions
 
-- Java: 11 (18 not supported)
+- Java: 18
 - Gradle: 7.5.1
 
 ## How to run
