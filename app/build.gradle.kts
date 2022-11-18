@@ -28,10 +28,10 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core
-    implementation("org.apache.beam:beam-sdks-java-core:2.41.0")
+    implementation("org.apache.beam:beam-sdks-java-core:2.43.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
-    runtimeOnly("org.apache.beam:beam-runners-direct-java:2.41.0")
+    runtimeOnly("org.apache.beam:beam-runners-direct-java:2.43.0")
 
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
     testImplementation("org.hamcrest:hamcrest:2.2")
@@ -49,7 +49,7 @@ tasks.named<Test>("test") {
 
 if (project.hasProperty("dataflow-runner")) {
     dependencies {
-        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.41.0")
+        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.43.0")
     }
 }
 
