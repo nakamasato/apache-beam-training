@@ -5,17 +5,17 @@ package apachebeamtraining;
 
 import java.util.Date;
 import java.util.Iterator;
+import org.apache.beam.examples.common.WriteOneFilePerWindow;
 import org.apache.beam.sdk.Pipeline;
-import org.apache.beam.sdk.io.TextIO;
+import org.apache.beam.sdk.io.gcp.pubsub.PubsubIO;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.DoFn;
-import org.apache.beam.sdk.transforms.GroupByKey;
-import org.apache.beam.sdk.transforms.GroupIntoBatches;
-import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.transforms.windowing.FixedWindows;
+import org.apache.beam.sdk.transforms.windowing.Window;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
-import org.apache.beam.sdk.values.PCollectionTuple;
+import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,37 +108,19 @@ public class App {
 
     Pipeline p = Pipeline.create(options);
 
-    // Input: read from file
-    PCollection<String> textData = p.apply(TextIO.read().from("input-record.txt"));
+    // Input: read from PubSub
+    PCollection<String> textData = p.apply("Read PubSub Message", PubsubIO.readStrings()
+        .fromSubscription("projects/masatonaka1989/subscriptions/apache-beam-training"));
 
-    // Process1: Group by the cryptocurrency name and write each line length to the file.
-    PCollection<KV<String, Integer>> mapped = textData.apply(ParDo.of(new ConvertStringIntoKVFn()));
-    PCollection<KV<String, Iterable<Integer>>> groupByKey =
-        mapped.apply(GroupByKey.<String, Integer>create());
-    PCollection<String> count =
-        groupByKey.apply(ParDo.of(new ConvertToStringFn<KV<String, Iterable<Integer>>>()));
-    count.apply(TextIO.write().to("output-aggregated"));
+    // Make a Window
+    PCollection<String> windowedTextData =
+        textData.apply(Window.into(FixedWindows.of(Duration.standardSeconds(10))));
 
-    // Process2: Extract the amount of each line and write it to the file.
-    PCollection<String> bidData = textData.apply(ParDo.of(new ExtractAmountFromRowFn()));
-    bidData.apply(TextIO.write().to("output-map"));
-
-    // Process3: GroupIntoBatches
-    PCollection<KV<String, CryptoCurrency>> cryptoKV =
-        textData.apply(ParDo.of(new ConvertTextIntoKVCryptoCurrencyFn()));
-    PCollection<KV<String, Iterable<CryptoCurrency>>> batchedCrypt =
-        cryptoKV.apply(GroupIntoBatches.<String, CryptoCurrency>ofSize(3));
-    PCollection<String> output = batchedCrypt.apply(ParDo.of(new ProcessBatch()));
-    output.apply(TextIO.write().to("output-count"));
-
-    // Process4: Use MultipleOutput
-    PCollectionTuple outputTuple = MultipleOutput.process(batchedCrypt);
-    PCollection<BatchResult> success = outputTuple.get(MultipleOutput.validTag);
-    PCollection<Failure> failure = outputTuple.get(MultipleOutput.failureTag);
-    success.apply(ParDo.of(new ConvertToStringFn<BatchResult>()))
-        .apply(TextIO.write().to("output-success"));
-    failure.apply(ParDo.of(new ConvertToStringFn<Failure>()))
-        .apply(TextIO.write().to("output-failure"));
+    // Write to file
+    // windowedTextData
+    //     .apply(TextIO.write().to("output-unbounded").withWindowedWrites().withNumShards(1));
+    windowedTextData.apply("Write Files to GCS",
+        new WriteOneFilePerWindow("gs://naka-apache-beam-training/samples/output", 1));
 
     p.run().waitUntilFinish();
   }
