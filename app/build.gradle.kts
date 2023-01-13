@@ -49,7 +49,7 @@ tasks.named<Test>("test") {
 
 if (project.hasProperty("dataflow-runner")) {
     dependencies {
-        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.43.0")
+        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.44.0")
     }
 }
 
