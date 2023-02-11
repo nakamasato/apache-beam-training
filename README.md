@@ -12,6 +12,12 @@ export JAVA_HOME=`/usr/libexec/java_home -v 11`
 ./gradlew run
 ```
 
+Check dependencies:
+
+```
+./gradlew app:dependencies
+```
+
 ## Examples
 
 1. [First Apache Beam Application](docs/01-first-apache-beam-application.md)
@@ -21,6 +27,7 @@ export JAVA_HOME=`/usr/libexec/java_home -v 11`
 1. [KV with Custom Class and GroupIntoBatches](docs/05-kv-with-custom-class-and-groupintobatches.md)
 1. [MultiOutput: Failure Handling](docs/06-multioutput-failure-handling.md)
 1. [MultiOutput: with differnt types](docs/07-multioutput-with-different-types.md)
+1. [Read from Google PubSub](docs/08-read-from-pubsub.md)
 # References
 
 1. Study Resource:
@@ -43,3 +50,4 @@ export JAVA_HOME=`/usr/libexec/java_home -v 11`
     1. https://github.com/GoogleCloudPlatform/DataflowJavaSDK/issues/298
     1. https://timbrowndatablog.medium.com/apache-beam-coder-performance-4415cd0a1030
     1. https://stackoverflow.com/questions/28032063/how-to-fix-dataflow-unable-to-serialize-my-dofn
+1. KafkaIO+Protobuf: https://selectfrom.dev/apache-beam-python-dataflow-kafkaio-for-protobuf-message-streaming-f349119850ad

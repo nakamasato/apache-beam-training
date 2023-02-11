@@ -5,7 +5,6 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/7.5.1/userguide/building_java_projects.html
  */
-
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -31,10 +30,10 @@ dependencies {
     implementation("org.apache.beam:beam-sdks-java-core:2.43.0")
 
     // https://cloud.google.com/pubsub/docs/publish-receive-messages-client-library#install
-    implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.13.0")
+    implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.43.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-examples-java
-    implementation("org.apache.beam:beam-examples-java:2.41.0")
+    implementation("org.apache.beam:beam-examples-java:2.43.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
     runtimeOnly("org.apache.beam:beam-runners-direct-java:2.43.0")
@@ -62,27 +61,4 @@ if (project.hasProperty("dataflow-runner")) {
 task("execute", JavaExec::class) {
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set(System.getProperty("mainClass"))
-}
-
-// tasks.withType<Jar> {
-//     manifest {
-//         attributes["Main-Class"] = application.mainClass
-//     }
-// }
-
-tasks {
-    val fatJar = register<Jar>("fatJar") {
-        dependsOn.addAll(listOf("compileJava", "processResources")) // We need this for Gradle optimization to work
-        archiveClassifier.set("standalone") // Naming the jar
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        manifest { attributes(mapOf("Main-Class" to application.mainClass)) } // Provided we set it up in the application plugin configuration
-        val sourcesMain = sourceSets.main.get()
-        val contents = configurations.runtimeClasspath.get()
-            .map { if (it.isDirectory) it else zipTree(it) } +
-                sourcesMain.output
-        from(contents)
-    }
-    build {
-        dependsOn(fatJar) // Trigger fat jar creation during build
-    }
 }

@@ -8,8 +8,12 @@ import java.util.Iterator;
 import org.apache.beam.examples.common.WriteOneFilePerWindow;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.gcp.pubsub.PubsubIO;
+import org.apache.beam.sdk.options.Default;
+import org.apache.beam.sdk.options.Description;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
+import org.apache.beam.sdk.options.StreamingOptions;
+import org.apache.beam.sdk.options.Validation.Required;
 import org.apache.beam.sdk.transforms.DoFn;
 import org.apache.beam.sdk.transforms.windowing.FixedWindows;
 import org.apache.beam.sdk.transforms.windowing.Window;
@@ -102,25 +106,51 @@ public class App {
     }
   }
 
+  /*
+   * https://cloud.google.com/pubsub/docs/stream-messages-dataflow Define your own configuration
+   * options. Add your own arguments to be processed by the command-line parser, and specify default
+   * values for them.
+   */
+  public interface PubSubToGcsOptions extends PipelineOptions, StreamingOptions {
+    @Description("The Cloud Pub/Sub subscription to read from.")
+    @Required
+    String getInputSubscription();
+
+    void setInputSubscription(String value);
+
+    @Description("Output file's window size in number of minutes.")
+    @Default.Integer(1)
+    Integer getWindowSize();
+
+    void setWindowSize(Integer value);
+
+    @Description("Path of the output file including its filename prefix.")
+    @Required
+    String getOutput();
+
+    void setOutput(String value);
+  }
+
   public static void main(String[] args) {
 
-    PipelineOptions options = PipelineOptionsFactory.create();
+    // For local mode, you do not need to set the runner since DirectRunner is already the default.
+    PubSubToGcsOptions options =
+        PipelineOptionsFactory.fromArgs(args).withValidation().as(PubSubToGcsOptions.class);
+
+    options.setStreaming(true);
 
     Pipeline p = Pipeline.create(options);
 
     // Input: read from PubSub
-    PCollection<String> textData = p.apply("Read PubSub Message", PubsubIO.readStrings()
-        .fromSubscription("projects/masatonaka1989/subscriptions/apache-beam-training"));
+    PCollection<String> textData = p.apply("Read PubSub Message",
+        PubsubIO.readStrings().fromSubscription(options.getInputSubscription()));
 
     // Make a Window
     PCollection<String> windowedTextData =
-        textData.apply(Window.into(FixedWindows.of(Duration.standardSeconds(10))));
+        textData.apply(Window.into(FixedWindows.of(Duration.standardMinutes(options.getWindowSize()))));
 
     // Write to file
-    // windowedTextData
-    //     .apply(TextIO.write().to("output-unbounded").withWindowedWrites().withNumShards(1));
-    windowedTextData.apply("Write Files to GCS",
-        new WriteOneFilePerWindow("gs://naka-apache-beam-training/samples/output", 1));
+    windowedTextData.apply("Write Files to GCS", new WriteOneFilePerWindow(options.getOutput(), 1));
 
     p.run().waitUntilFinish();
   }
