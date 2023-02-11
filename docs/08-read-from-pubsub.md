@@ -26,21 +26,21 @@
 1. Create PubSub
 
     ```
-    TOPIC_ID=apache-beam-traing
+    TOPIC_ID=apache-beam-training
     gcloud pubsub topics create ${TOPIC_ID} --project $PROJECT_ID
     ```
 
     ```
-    gcloud pubsub topics list --filter 'name:projects/masatonaka1989/topics/apache-beam-traing'
+    gcloud pubsub topics list --filter 'name:projects/masatonaka1989/topics/apache-beam-training'
     ---
-    name: projects/masatonaka1989/topics/apache-beam-traing
+    name: projects/masatonaka1989/topics/apache-beam-training
     ```
 
 1. Create PubSub subscription
 
     ```
     SUBSCRIPTION_ID=apache-beam-training
-    gcloud pubsub subscriptions create $SUBSCRIPTION_ID --topic projects/masatonaka1989/topics/apache-beam-traing --project $PROJECT_ID
+    gcloud pubsub subscriptions create $SUBSCRIPTION_ID --topic projects/masatonaka1989/topics/apache-beam-training --project $PROJECT_ID
     Created subscription [projects/masatonaka1989/subscriptions/apache-beam-training].
     ```
 
@@ -200,9 +200,9 @@
 1. Publish message to PubSub
 
     ```
-    gcloud pubsub topics publish apache-beam-traing --message="BTC/JPY,bitflyer,1519845731987,1127174.0,1126166.0"
-    gcloud pubsub topics publish apache-beam-traing --message="ETH/JPY,bitflyer,1519845742363,1127470.0,1126176.0"
-    gcloud pubsub topics publish apache-beam-traing --message="BTC/JPY,bitflyer,1519845752427,1127601.0,1126227.0"
+    gcloud pubsub topics publish apache-beam-training --message="BTC/JPY,bitflyer,1519845731987,1127174.0,1126166.0"
+    gcloud pubsub topics publish apache-beam-training --message="ETH/JPY,bitflyer,1519845742363,1127470.0,1126176.0"
+    gcloud pubsub topics publish apache-beam-training --message="BTC/JPY,bitflyer,1519845752427,1127601.0,1126227.0"
     ```
 
 1. Check the job
@@ -239,7 +239,7 @@
         ```
     1. Delete PubSub Subscription & Topic
         ```
-        gcloud pubsub topics delete $SUBSCRIPTION_ID
+        gcloud pubsub subscriptions delete $SUBSCRIPTION_ID
         gcloud pubsub topics delete $TOPIC_ID
         ```
     1. Delete Service Account
