@@ -2,6 +2,10 @@ name: test
 
 on:
   pull_request:
+    paths:
+      - '**.java'
+      - app/build.gradle.kts
+      - .github/workflows/test.yml
 
 jobs:
   build:
