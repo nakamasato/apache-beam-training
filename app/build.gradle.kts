@@ -5,7 +5,6 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/7.5.1/userguide/building_java_projects.html
  */
-
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -29,6 +28,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core
     implementation("org.apache.beam:beam-sdks-java-core:2.43.0")
+
+    // https://cloud.google.com/pubsub/docs/publish-receive-messages-client-library#install
+    implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.43.0")
+
+    // https://mvnrepository.com/artifact/org.apache.beam/beam-examples-java
+    implementation("org.apache.beam:beam-examples-java:2.43.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
     runtimeOnly("org.apache.beam:beam-runners-direct-java:2.43.0")
