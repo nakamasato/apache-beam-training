@@ -3,7 +3,7 @@
 ## Versions
 
 - Java: 18
-- Gradle: 7.6
+- Gradle: 8.0
 
 ## How to run
 
