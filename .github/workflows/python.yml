@@ -1,0 +1,14 @@
+name: python
+
+on:
+  pull_request:
+    paths:
+      - 'python/**'
+      - .github/workflows/python.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3

@@ -5,10 +5,10 @@ on:
     paths:
       - '**.java'
       - java/app/build.gradle.kts
-      - .github/workflows/test.yml
+      - .github/workflows/java.yml
 
 jobs:
-  java:
+  build:
     runs-on: ubuntu-latest
 
     steps:
