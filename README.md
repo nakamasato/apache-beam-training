@@ -16,8 +16,9 @@ Java:
 1. [Read from Google PubSub](docs/08-read-from-pubsub.md)
 
 Python:
-TBD
-# References
+1. [wordcount](python)
+
+## References
 
 1. Study Resource:
     1. https://www.youtube.com/c/ApacheBeamYT/videos
