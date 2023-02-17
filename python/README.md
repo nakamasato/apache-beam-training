@@ -135,15 +135,19 @@ gcloud storage buckets create gs://${BUCKET_NAME} --project $PROJECT_ID
     ```
 ## Cleanup
 
+Delete resources
 
 ```
 gcloud pubsub subscriptions delete $SUBSCRIPTION_ID  --project $PROJECT_ID
 gcloud pubsub subscriptions delete ${SUBSCRIPTION_ID}-output --project $PROJECT_ID
 gcloud pubsub topics delete ${TOPIC_ID} --project $PROJECT_ID
 gcloud pubsub topics delete ${TOPIC_ID}-output --project $PROJECT_ID
+gsutil rm -rf "gs://${BUCKET_NAME}/temp/*"
+gsutil rm -rf "gs://${BUCKET_NAME}/staging/*"
 gcloud storage buckets delete gs://${BUCKET_NAME} --project $PROJECT_ID
 ```
 
+Revoke local credentials
 ```
 gcloud auth application-default revoke
 gcloud auth revoke

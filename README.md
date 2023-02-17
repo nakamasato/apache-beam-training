@@ -1,25 +1,11 @@
 # Apache Beam Training
 
-## Versions
-
-- Java: 18
-- Gradle: 8.0
-
-## How to run
-
-```
-export JAVA_HOME=`/usr/libexec/java_home -v 11`
-./gradlew run
-```
-
-Check dependencies:
-
-```
-./gradlew app:dependencies
-```
+1. [Java](java)
+1. [Python](python)
 
 ## Examples
 
+Java:
 1. [First Apache Beam Application](docs/01-first-apache-beam-application.md)
 1. [ParDo and DoFn: Parallel Processing](docs/02-pardo-and-dofn-parallel-processing.md)
 1. [KV + GroupByKey: Aggregation](docs/03-kv-groupbykey-aggregation.md)
@@ -28,6 +14,9 @@ Check dependencies:
 1. [MultiOutput: Failure Handling](docs/06-multioutput-failure-handling.md)
 1. [MultiOutput: with differnt types](docs/07-multioutput-with-different-types.md)
 1. [Read from Google PubSub](docs/08-read-from-pubsub.md)
+
+Python:
+TBD
 # References
 
 1. Study Resource:
