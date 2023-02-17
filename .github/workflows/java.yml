@@ -24,6 +24,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: test
+        working-directory: java
         run: |
           ./gradlew test
 
