@@ -6,3 +6,5 @@ build
 
 app/bin
 app/output-*
+
+__pycache__
