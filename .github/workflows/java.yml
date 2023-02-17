@@ -1,14 +1,14 @@
-name: test
+name: java
 
 on:
   pull_request:
     paths:
       - '**.java'
-      - app/build.gradle.kts
+      - java/app/build.gradle.kts
       - .github/workflows/test.yml
 
 jobs:
-  build:
+  java:
     runs-on: ubuntu-latest
 
     steps:
