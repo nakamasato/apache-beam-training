@@ -6,3 +6,6 @@ build
 
 app/bin
 app/output-*
+
+__pycache__
+.venv

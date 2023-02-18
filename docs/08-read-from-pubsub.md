@@ -40,7 +40,7 @@
 
     ```
     SUBSCRIPTION_ID=apache-beam-training
-    gcloud pubsub subscriptions create $SUBSCRIPTION_ID --topic projects/masatonaka1989/topics/apache-beam-training --project $PROJECT_ID
+    gcloud pubsub subscriptions create $SUBSCRIPTION_ID --topic projects/${PROJECT_ID}/topics/${TOPIC_ID} --project $PROJECT_ID
     Created subscription [projects/masatonaka1989/subscriptions/apache-beam-training].
     ```
 
@@ -146,7 +146,7 @@
         .apply(TextIO.write().to(options.getOutput()).withWindowedWrites().withNumShards(1));
     ```
 
-<details><summary>main()</summary>
+<details>
 
 ```java
   public static void main(String[] args) {
@@ -174,7 +174,8 @@
   }
 ```
 
-</summary>
+</details><summary>main()</summary>
+
 ## Run in local
 
 1. Run in local (with DirectRunner) (ToDo)
@@ -250,6 +251,7 @@
         ```
         gcloud auth application-default revoke
         gcloud auth revoke
+        gcloud config unset project
         ```
 ## Error
 

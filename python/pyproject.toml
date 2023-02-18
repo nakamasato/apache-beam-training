@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "apache-beam-training"
+version = "0.1.0"
+description = ""
+authors = ["Masato Naka <masatonaka1989@gmail.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.9"
+wheel = "^0.38.4"
+apache-beam = {extras = ["gcp"], version = "^2.45.0"}
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.12.0"
+black = "^23.1.0"
+flake8 = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

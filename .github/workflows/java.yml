@@ -1,11 +1,11 @@
-name: test
+name: java
 
 on:
   pull_request:
     paths:
       - '**.java'
-      - app/build.gradle.kts
-      - .github/workflows/test.yml
+      - java/app/build.gradle.kts
+      - .github/workflows/java.yml
 
 jobs:
   build:
@@ -22,15 +22,21 @@ jobs:
 
       - name: setup gradle
         uses: gradle/gradle-build-action@v2
+        with:
+          build-root-directory: java
 
       - name: test
+        working-directory: java
         run: |
           ./gradlew test
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
+        with:
+          build-root-directory: java
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
+          build-root-directory: java
