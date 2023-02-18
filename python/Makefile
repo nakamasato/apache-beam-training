@@ -1,13 +1,13 @@
 .PHONY: fmt
 fmt:
+	poetry run isort --profile black *.py
 	poetry run black *.py
-	poetry run isort *.py
 
 .PHONY: lint
 lint:
-	poetry run isort --check --diff .
+	poetry run isort --profile black --check --diff .
 	poetry run black --check --diff .
-	poetry run flake8 .*py
+	poetry run flake8 *.py
 
 .PHONY: test
 test:
