@@ -2,6 +2,7 @@
 fmt:
 	poetry run isort --profile black *.py
 	poetry run black *.py
+	poetry run flake8 *.py
 
 .PHONY: lint
 lint:
