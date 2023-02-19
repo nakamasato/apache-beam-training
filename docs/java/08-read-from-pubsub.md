@@ -1,4 +1,4 @@
-# [8. Read from PubSub](https://github.com/nakamasato/apache-beam-training/tree/4e78dae16eacc9930ef44af340681b4c97e783cb)
+# [8. Read from PubSub (Dataflow)](https://github.com/nakamasato/apache-beam-training/tree/4e78dae16eacc9930ef44af340681b4c97e783cb)
 
 ## Prepare GCP resources (PubSub, Storage, Service Account)
 

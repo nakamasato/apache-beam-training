@@ -9,3 +9,4 @@ app/output-*
 
 __pycache__
 .venv
+output
