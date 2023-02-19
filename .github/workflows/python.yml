@@ -49,6 +49,9 @@ jobs:
       - name: Lint
         run: make lint
 
+      - name: run simple proto pipeline with direct runner
+        run: poetry run python streaming_wordcount_proto.py --runner directrunner
+
       # - name: Test with pytest
       #   run: make test
 
