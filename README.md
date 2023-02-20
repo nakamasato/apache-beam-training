@@ -6,17 +6,18 @@
 ## Examples
 
 Java:
-1. [First Apache Beam Application](docs/01-first-apache-beam-application.md)
-1. [ParDo and DoFn: Parallel Processing](docs/02-pardo-and-dofn-parallel-processing.md)
-1. [KV + GroupByKey: Aggregation](docs/03-kv-groupbykey-aggregation.md)
-1. [MapElement.via(new SimpleFunction) <-> ParDo + DoFn](docs/04-mapelement-simplefunction-pardo-dofn.md)
-1. [KV with Custom Class and GroupIntoBatches](docs/05-kv-with-custom-class-and-groupintobatches.md)
-1. [MultiOutput: Failure Handling](docs/06-multioutput-failure-handling.md)
-1. [MultiOutput: with differnt types](docs/07-multioutput-with-different-types.md)
-1. [Read from Google PubSub](docs/08-read-from-pubsub.md)
+1. [First Apache Beam Application](docs/java/01-first-apache-beam-application.md)
+1. [ParDo and DoFn: Parallel Processing](docs/java/02-pardo-and-dofn-parallel-processing.md)
+1. [KV + GroupByKey: Aggregation](docs/java/03-kv-groupbykey-aggregation.md)
+1. [MapElement.via(new SimpleFunction) <-> ParDo + DoFn](docs/java/04-mapelement-simplefunction-pardo-dofn.md)
+1. [KV with Custom Class and GroupIntoBatches](docs/java/05-kv-with-custom-class-and-groupintobatches.md)
+1. [MultiOutput: Failure Handling](docs/java/06-multioutput-failure-handling.md)
+1. [MultiOutput: with differnt types](docs/java/07-multioutput-with-different-types.md)
+1. [Read from Google PubSub](docs/java/08-read-from-pubsub.md)
 
 Python:
-1. [wordcount](python)
+1. [Read and write PubSub](docs/python/01-read-and-write-pubsub.md)
+1. [Read and write PubSub proto message](docs/python/02-read-and-write-pubsub-proto-message.md)
 
 ## References
 

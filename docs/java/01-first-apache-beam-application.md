@@ -1,5 +1,6 @@
 # [1. First Apache Beam Application](https://github.com/nakamasato/apache-beam-training/tree/2a13d4bd5c5cfbc85da952565e3d3b90300c2dac)
 
+## Step by Step
 1. Update `app/build.gradle.kts`.
 
     ```kotlin
