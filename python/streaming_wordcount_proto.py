@@ -3,9 +3,11 @@ import logging
 
 import apache_beam as beam
 from apache_beam.examples.wordcount_with_metrics import WordExtractingDoFn
-from apache_beam.options.pipeline_options import (PipelineOptions,
-                                                  SetupOptions,
-                                                  StandardOptions)
+from apache_beam.options.pipeline_options import (
+    PipelineOptions,
+    SetupOptions,
+    StandardOptions,
+)
 from apache_beam.transforms import window
 from wordcount.wordcount_pb2 import WordCount
 
