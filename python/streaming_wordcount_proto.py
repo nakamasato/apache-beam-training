@@ -9,8 +9,7 @@ from apache_beam.options.pipeline_options import (
     StandardOptions,
 )
 from apache_beam.transforms import window
-
-from wordcount_pb2 import WordCount
+from wordcount.wordcount_pb2 import WordCount
 
 
 def run(argv=None, save_main_session=True):

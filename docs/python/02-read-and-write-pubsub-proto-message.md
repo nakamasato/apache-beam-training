@@ -118,5 +118,21 @@ Ref: https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any
     ```
 
     </details>
+
+## 2. Run with bazel
+
+1. Ensure your poetry version is `<v1.3.0`
+    ```
+    poetry --version
+    Poetry (version 1.2.2)
+    ```
+1. Add pandas
+    ```
+    poetry add pandas==1.2.3
+    ```
+1. Run with bazel
+    ```
+    bazel run //python:streaming_wordcount_proto -- --runner directrunner
+    ```
 ## 2. Write Proto message from Dataflow
 

@@ -1,0 +1,12 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@poetry//:dependencies.bzl", "dependency")
+
+py_binary(
+    name = "streaming_wordcount_proto",
+    srcs = ["streaming_wordcount_proto.py"],
+    deps = [
+        # dependency("pandas"),
+        dependency("apache-beam"),
+        "//proto/wordcount:py_proto",
+    ],
+)
