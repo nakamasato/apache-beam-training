@@ -36,7 +36,7 @@ dependencies {
     implementation("org.apache.beam:beam-examples-java:2.47.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
-    runtimeOnly("org.apache.beam:beam-runners-direct-java:2.47.0")
+    runtimeOnly("org.apache.beam:beam-runners-direct-java:2.48.0")
 
     // https://mvnrepository.com/artifact/org.hamcrest/hamcrest
     testImplementation("org.hamcrest:hamcrest:2.2")
