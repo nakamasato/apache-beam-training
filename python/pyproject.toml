@@ -10,7 +10,7 @@ packages = []
 python = "^3.9"
 wheel = "^0.40.0"
 apache-beam = {extras = ["gcp"], version = "^2.45.0"}
-protobuf = "4.23.2"
+protobuf = "4.23.3"
 
 
 [tool.poetry.group.dev.dependencies]
