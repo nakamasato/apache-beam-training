@@ -2,43 +2,37 @@
 
 [[package]]
 name = "apache-beam"
-version = "2.48.0"
+version = "2.49.0"
 description = "Apache Beam SDK for Python"
 category = "main"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "apache-beam-2.48.0.zip", hash = "sha256:611b9e0015e9d1d2ca34b91453117ee5b54ca7446de505b95b2c5a5c4d9f4b1e"},
-    {file = "apache_beam-2.48.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:4efbd2b808ecd371c0a827986b89da8cea9f073a0114eede9d2674b34d7044ab"},
-    {file = "apache_beam-2.48.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f55df2d5d5e6036b7987bf468dbd35b6494f1998733a1b74acfd7feee80096fb"},
-    {file = "apache_beam-2.48.0-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:d52beeac61eea96fdab61bcc1a94e72b9ce0bef65b949a19b50aba383c70ae0b"},
-    {file = "apache_beam-2.48.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:916ee34a3665e664f6790ff01c65e2332b956c8a47c4f7137b898fbf99dca664"},
-    {file = "apache_beam-2.48.0-cp310-cp310-win32.whl", hash = "sha256:5ca78411e49a33daa48b62880b7cd9fdb7811540d74bdbc89c4e98c6be725813"},
-    {file = "apache_beam-2.48.0-cp310-cp310-win_amd64.whl", hash = "sha256:5458e3f0ac2de29f209879cea712a443765ec6ed78779c900236fe796067aee8"},
-    {file = "apache_beam-2.48.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:3d9223b21001bfedd460218237e8f87a3c57886781755be60d5511a7b483fae9"},
-    {file = "apache_beam-2.48.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:454c3babc19d0dafab7bb38899f617ee0b73f9a991108f293fcfd30e779619f5"},
-    {file = "apache_beam-2.48.0-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:3bb9979ccd7ab5885f790f06a43d3a456e0422274a5361142f670199d2631263"},
-    {file = "apache_beam-2.48.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:054fc78d1a4916006e347538ad570c7126ff681bd013493d444a762ead60743d"},
-    {file = "apache_beam-2.48.0-cp311-cp311-win32.whl", hash = "sha256:57342f524dd8da3a0aa0c4d17aa21d3b68a1ef2821e759a99e69b6b843ef0438"},
-    {file = "apache_beam-2.48.0-cp311-cp311-win_amd64.whl", hash = "sha256:70ac24ac3b4cbd4d447bf216f614fb68ba61e5068992763a75885a3392c292db"},
-    {file = "apache_beam-2.48.0-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:40314e0be2ae0775cc361e4afdf20715c74a9aa8d2432943c5263b0598f980cb"},
-    {file = "apache_beam-2.48.0-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f48737ac565df8fe954e4d7f9d54cf402620ba4289cfd9a2441f2fb102a432ab"},
-    {file = "apache_beam-2.48.0-cp37-cp37m-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:09ad28418a79f50e1efd36e43bf4cb549ff6da17fc0e6de91af9930a4c828e66"},
-    {file = "apache_beam-2.48.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c7d1b489de63435eace113acf7ac5417a2ea0428ec2c6887a50454be3872cfc8"},
-    {file = "apache_beam-2.48.0-cp37-cp37m-win32.whl", hash = "sha256:3021f34b10f04b6244a03c2ae6c9ae32e3d17003d5a63f6edb25eb0e7bf92788"},
-    {file = "apache_beam-2.48.0-cp37-cp37m-win_amd64.whl", hash = "sha256:4a8b51ec381d97191ba35bcfd0ee773c7daf356e08aa05ba294ed52b17460718"},
-    {file = "apache_beam-2.48.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:83f5986006247791614165b81a44476b23b474dcd6b6caa5efcf9510b4d26099"},
-    {file = "apache_beam-2.48.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6cc25c575e1a3e03257b4e9108b94f1ea15929ef0d6b9cad43c16376b830dede"},
-    {file = "apache_beam-2.48.0-cp38-cp38-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:85275ea190ae5388d86e18e1c16a17e5dcd1264273cea478a6ea6c392305111f"},
-    {file = "apache_beam-2.48.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:64cdefb72b0c71563156c23fb68037c977bb7cf6c59ab78d7a72c78d588d055e"},
-    {file = "apache_beam-2.48.0-cp38-cp38-win32.whl", hash = "sha256:5cbda66f07a87d696edd266995fd90a8bba9f055451bbc26fa5296aebc657179"},
-    {file = "apache_beam-2.48.0-cp38-cp38-win_amd64.whl", hash = "sha256:ce35acde3ad140b3d0cc590dd3dc03eea179c79aa6ee1b0a60188dfd367afb73"},
-    {file = "apache_beam-2.48.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:764ad48b87b7c72b6482b540c8edc5dd78bb59b2c58a84f85a3edaadf9686608"},
-    {file = "apache_beam-2.48.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:dd2bd7b6718304549961236ef8f0303cc0ac925977e15f09061fb85578de890b"},
-    {file = "apache_beam-2.48.0-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:6ef5c1f3731b06264e27a457b8079056cc45e17df215d1943a2112f2914dee16"},
-    {file = "apache_beam-2.48.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f54387f561315779783652ebb657e7893779917e7fb0e67d602c513786c8b190"},
-    {file = "apache_beam-2.48.0-cp39-cp39-win32.whl", hash = "sha256:a4165c163041b2151e29569096b613f81c23c577c2072734f4cf4781e4236490"},
-    {file = "apache_beam-2.48.0-cp39-cp39-win_amd64.whl", hash = "sha256:0fed22965e1bd593229c00c372dca2aa088b7d6b25b31d595303018fcffb0c37"},
+    {file = "apache-beam-2.49.0.zip", hash = "sha256:b4a72ef7f73bc254cf377d2363847cabbb4795e23db7a14a235e435a90e2cfac"},
+    {file = "apache_beam-2.49.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:cb5f60b3c96d51a46a59c3e12ae69913d39427cc3d6d169a88bd2113df335a72"},
+    {file = "apache_beam-2.49.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d279f58df2fffec9f2c9657960349a6db09b636467b9ae73cbe043bb31a1a579"},
+    {file = "apache_beam-2.49.0-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:66c40a915fdb9260533e44f48f8214f1419aea167b492d46b1d74dac7cdb70b1"},
+    {file = "apache_beam-2.49.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a8e4e77cf8ff489fecf218aec3907af77f0773467ba5c9b909d9e9c46fcd2200"},
+    {file = "apache_beam-2.49.0-cp310-cp310-win32.whl", hash = "sha256:de37089e4902704d8395d2846a1857fe616eb00a46670099ac623031b48b31fc"},
+    {file = "apache_beam-2.49.0-cp310-cp310-win_amd64.whl", hash = "sha256:c019581afbbe6d3c8054e3e36cfd4b4951bfdda45ed370db453c5c8476e28d44"},
+    {file = "apache_beam-2.49.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:327ff4a3b1c9bfc835424afe6e086f0fccedd95880efdcff814ff1c8f3293ded"},
+    {file = "apache_beam-2.49.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ddeec7450defee6093712590d5485748d53bff955242ba756c67f4647feb024e"},
+    {file = "apache_beam-2.49.0-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:97cd242eafbee0c0d5a7547cbcdfbf03f7e7c59a383aec39a9b4d71874f7110e"},
+    {file = "apache_beam-2.49.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5b971ba1dba6c97be6cb44b8b8054076c6c36a247f78c4bf8b418540ad7e8c1e"},
+    {file = "apache_beam-2.49.0-cp311-cp311-win32.whl", hash = "sha256:dd7cf4fbd66d04ca6e668b824c9e38d73cd9ebceaca57a30779e5cd6717990c5"},
+    {file = "apache_beam-2.49.0-cp311-cp311-win_amd64.whl", hash = "sha256:a69a3e3322aa17163a26be90c2f142983980d84b7b779611d2cdef87b505fdbb"},
+    {file = "apache_beam-2.49.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:79997a1db2f0da4350735bab398d9c9c28263e734149387525e24a40b42de00b"},
+    {file = "apache_beam-2.49.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7ba7b07c0ba9d636f603b10dea277eee7bc2f05556d4f74bb346ebaf8939090d"},
+    {file = "apache_beam-2.49.0-cp38-cp38-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:13df290e15ad7366d1bda7d76e736b3a71be957201973e7e202ac2eb4f23f745"},
+    {file = "apache_beam-2.49.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:dba18ef871bfdfa1f37fba7a0de7d3839c66ff74c0dd62b152b5613176d4491d"},
+    {file = "apache_beam-2.49.0-cp38-cp38-win32.whl", hash = "sha256:d3d5aaaebc8a01ac83d9fce2b845cdd9a3fcbe6d31de7581d177fca4fbdf6964"},
+    {file = "apache_beam-2.49.0-cp38-cp38-win_amd64.whl", hash = "sha256:954b56bd876f6da8866a96dd67014ca0394ead753845685c2c68f821be90e9e9"},
+    {file = "apache_beam-2.49.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:74180e025ff686da58dc89c3d751497bff48209a9ee99bf431eaa904a60bf901"},
+    {file = "apache_beam-2.49.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:b49861d09786dde786101c3418f89ace1f2726880fb8c36ec2ee266680e18583"},
+    {file = "apache_beam-2.49.0-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:5d582f4ce7956971189e7d6d503a195b3788fc740f8e652cc111838528ff10b4"},
+    {file = "apache_beam-2.49.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2b0b39de2984241e61a6efbdc1addf4d614434c170e43a2bdcfd2c20c1d04604"},
+    {file = "apache_beam-2.49.0-cp39-cp39-win32.whl", hash = "sha256:3ff139114b2773663fe8d7aaedae78c2f7691281ac32f1d7f8ebca6efa7ba1d9"},
+    {file = "apache_beam-2.49.0-cp39-cp39-win_amd64.whl", hash = "sha256:f26caf7ccd1887e28cf43b12a61e302247945e1cd51cab5509560e72a1fa5338"},
 ]
 
 [package.dependencies]
@@ -51,9 +45,10 @@ fasteners = ">=0.3,<1.0"
 google-apitools = {version = ">=0.5.31,<0.5.32", optional = true, markers = "extra == \"gcp\""}
 google-auth = {version = ">=1.18.0,<3", optional = true, markers = "extra == \"gcp\""}
 google-auth-httplib2 = {version = ">=0.1.0,<0.2.0", optional = true, markers = "extra == \"gcp\""}
+google-cloud-aiplatform = {version = ">=1.26.0,<2.0", optional = true, markers = "extra == \"gcp\""}
 google-cloud-bigquery = {version = ">=2.0.0,<4", optional = true, markers = "extra == \"gcp\""}
 google-cloud-bigquery-storage = {version = ">=2.6.3,<3", optional = true, markers = "extra == \"gcp\""}
-google-cloud-bigtable = {version = ">=2.0.0,<2.18.0", optional = true, markers = "extra == \"gcp\""}
+google-cloud-bigtable = {version = ">=2.19.0,<3", optional = true, markers = "extra == \"gcp\""}
 google-cloud-core = {version = ">=2.0.0,<3", optional = true, markers = "extra == \"gcp\""}
 google-cloud-datastore = {version = ">=2.0.0,<3", optional = true, markers = "extra == \"gcp\""}
 google-cloud-dlp = {version = ">=3.0.0,<4", optional = true, markers = "extra == \"gcp\""}
@@ -86,11 +81,11 @@ zstandard = ">=0.18.0,<1"
 aws = ["boto3 (>=1.9,<2)"]
 azure = ["azure-core (>=1.7.0,<2)", "azure-identity (>=1.12.0,<2)", "azure-storage-blob (>=12.3.2,<13)"]
 dask = ["dask (>=2022.6)", "distributed (>=2022.6)"]
-dataframe = ["pandas (<1.6.0)", "pandas (>=1.4.3,!=1.5.0,!=1.5.1,<1.6)"]
+dataframe = ["pandas (>=1.4.3,!=1.5.0,!=1.5.1,<1.6)"]
 docs = ["Sphinx (>=1.5.2,<2.0)", "docutils (==0.17.1)", "pandas (<2.0.0)"]
-gcp = ["cachetools (>=3.1.0,<6)", "google-apitools (>=0.5.31,<0.5.32)", "google-auth (>=1.18.0,<3)", "google-auth-httplib2 (>=0.1.0,<0.2.0)", "google-cloud-bigquery (>=2.0.0,<4)", "google-cloud-bigquery-storage (>=2.6.3,<3)", "google-cloud-bigtable (>=2.0.0,<2.18.0)", "google-cloud-core (>=2.0.0,<3)", "google-cloud-datastore (>=2.0.0,<3)", "google-cloud-dlp (>=3.0.0,<4)", "google-cloud-language (>=2.0,<3)", "google-cloud-pubsub (>=2.1.0,<3)", "google-cloud-pubsublite (>=1.2.0,<2)", "google-cloud-recommendations-ai (>=0.1.0,<0.11.0)", "google-cloud-spanner (>=3.0.0,<4)", "google-cloud-videointelligence (>=2.0,<3)", "google-cloud-vision (>=2,<4)"]
-interactive = ["facets-overview (>=1.1.0,<2)", "google-cloud-dataproc (>=5.0.0,<6)", "ipykernel (>=6,<7)", "ipython (>=7,<8)", "ipython (>=8,<9)", "ipywidgets (>=8,<9)", "jupyter-client (>=6.1.11,!=6.1.13,<8.2.1)", "pandas (<1.6.0)", "pandas (>=1.4.3,!=1.5.0,!=1.5.1,<1.6)", "timeloop (>=1.0.2,<2)"]
-interactive-test = ["chromedriver-binary (>=100,<114)", "nbconvert (>=6.2.0,<8)", "nbformat (>=5.0.5,<6)", "needle (>=0.5.0,<1)", "pillow (>=7.1.1,<10)"]
+gcp = ["cachetools (>=3.1.0,<6)", "google-apitools (>=0.5.31,<0.5.32)", "google-auth (>=1.18.0,<3)", "google-auth-httplib2 (>=0.1.0,<0.2.0)", "google-cloud-aiplatform (>=1.26.0,<2.0)", "google-cloud-bigquery (>=2.0.0,<4)", "google-cloud-bigquery-storage (>=2.6.3,<3)", "google-cloud-bigtable (>=2.19.0,<3)", "google-cloud-core (>=2.0.0,<3)", "google-cloud-datastore (>=2.0.0,<3)", "google-cloud-dlp (>=3.0.0,<4)", "google-cloud-language (>=2.0,<3)", "google-cloud-pubsub (>=2.1.0,<3)", "google-cloud-pubsublite (>=1.2.0,<2)", "google-cloud-recommendations-ai (>=0.1.0,<0.11.0)", "google-cloud-spanner (>=3.0.0,<4)", "google-cloud-videointelligence (>=2.0,<3)", "google-cloud-vision (>=2,<4)"]
+interactive = ["facets-overview (>=1.1.0,<2)", "google-cloud-dataproc (>=5.0.0,<6)", "ipykernel (>=6,<7)", "ipython (>=8,<9)", "ipywidgets (>=8,<9)", "jupyter-client (>=6.1.11,!=6.1.13,<8.2.1)", "nbconvert (>=6.2.0,<8)", "nbformat (>=5.0.5,<6)", "pandas (>=1.4.3,!=1.5.0,!=1.5.1,<1.6)", "timeloop (>=1.0.2,<2)"]
+interactive-test = ["chromedriver-binary (>=100,<114)", "needle (>=0.5.0,<1)", "pillow (>=7.1.1,<10)"]
 test = ["cryptography (>=36.0.0)", "freezegun (>=0.3.12)", "hypothesis (>5.0.0,<=7.0.0)", "joblib (>=1.0.1)", "mock (>=1.0.1,<6.0.0)", "pandas (<2.0.0)", "parameterized (>=0.7.1,<0.10.0)", "psycopg2-binary (>=2.8.5,<3.0.0)", "pyhamcrest (>=1.9,!=1.10.0,<3.0.0)", "pytest (>=7.1.2,<8.0)", "pytest-timeout (>=2.1.0,<3)", "pytest-xdist (>=2.5.0,<4)", "pyyaml (>=3.12,<7.0.0)", "requests-mock (>=1.7,<2.0)", "scikit-learn (>=0.20.0)", "sqlalchemy (>=1.3,<2.0)", "tenacity (>=8.0.0,<9)", "testcontainers[mysql] (>=3.0.3,<4.0.0)"]
 
 [[package]]
@@ -482,26 +477,34 @@ pyflakes = ">=3.0.0,<3.1.0"
 
 [[package]]
 name = "google-api-core"
-version = "2.8.2"
+version = "2.11.1"
 description = "Google API client core library"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "google-api-core-2.8.2.tar.gz", hash = "sha256:06f7244c640322b508b125903bb5701bebabce8832f85aba9335ec00b3d02edc"},
-    {file = "google_api_core-2.8.2-py3-none-any.whl", hash = "sha256:93c6a91ccac79079ac6bbf8b74ee75db970cc899278b97d53bc012f35908cf50"},
+    {file = "google-api-core-2.11.1.tar.gz", hash = "sha256:25d29e05a0058ed5f19c61c0a78b1b53adea4d9364b464d014fbda941f6d1c9a"},
+    {file = "google_api_core-2.11.1-py3-none-any.whl", hash = "sha256:d92a5a92dc36dd4f4b9ee4e55528a90e432b059f93aee6ad857f9de8cc7ae94a"},
 ]
 
 [package.dependencies]
-google-auth = ">=1.25.0,<3.0dev"
-googleapis-common-protos = ">=1.56.2,<2.0dev"
-grpcio = {version = ">=1.33.2,<2.0dev", optional = true, markers = "extra == \"grpc\""}
-grpcio-status = {version = ">=1.33.2,<2.0dev", optional = true, markers = "extra == \"grpc\""}
-protobuf = ">=3.15.0,<5.0.0dev"
-requests = ">=2.18.0,<3.0.0dev"
+google-auth = ">=2.14.1,<3.0.dev0"
+googleapis-common-protos = ">=1.56.2,<2.0.dev0"
+grpcio = [
+    {version = ">=1.33.2,<2.0dev", optional = true, markers = "extra == \"grpc\""},
+    {version = ">=1.49.1,<2.0dev", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
+]
+grpcio-status = [
+    {version = ">=1.33.2,<2.0.dev0", optional = true, markers = "extra == \"grpc\""},
+    {version = ">=1.49.1,<2.0.dev0", optional = true, markers = "python_version >= \"3.11\" and extra == \"grpc\""},
+]
+protobuf = ">=3.19.5,<3.20.0 || >3.20.0,<3.20.1 || >3.20.1,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<5.0.0.dev0"
+requests = ">=2.18.0,<3.0.0.dev0"
 
 [package.extras]
-grpc = ["grpcio (>=1.33.2,<2.0dev)", "grpcio-status (>=1.33.2,<2.0dev)"]
+grpc = ["grpcio (>=1.33.2,<2.0dev)", "grpcio (>=1.49.1,<2.0dev)", "grpcio-status (>=1.33.2,<2.0.dev0)", "grpcio-status (>=1.49.1,<2.0.dev0)"]
+grpcgcp = ["grpcio-gcp (>=0.2.2,<1.0.dev0)"]
+grpcio-gcp = ["grpcio-gcp (>=0.2.2,<1.0.dev0)"]
 
 [[package]]
 name = "google-apitools"
@@ -568,6 +571,44 @@ httplib2 = ">=0.15.0"
 six = "*"
 
 [[package]]
+name = "google-cloud-aiplatform"
+version = "1.28.0"
+description = "Vertex AI API client library"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "google-cloud-aiplatform-1.28.0.tar.gz", hash = "sha256:810339254f354f9a0084f020aab43a56f710348910c177821f7d962b461244a0"},
+    {file = "google_cloud_aiplatform-1.28.0-py2.py3-none-any.whl", hash = "sha256:9fff957e193cc6de88a189b5a967f0cbd358c1da9b7faf36f3b7141fc0486243"},
+]
+
+[package.dependencies]
+google-api-core = {version = ">=1.32.0,<2.0.0 || >=2.8.0,<3.0.0dev", extras = ["grpc"]}
+google-cloud-bigquery = ">=1.15.0,<4.0.0dev"
+google-cloud-resource-manager = ">=1.3.3,<3.0.0dev"
+google-cloud-storage = ">=1.32.0,<3.0.0dev"
+packaging = ">=14.3"
+proto-plus = ">=1.22.0,<2.0.0dev"
+protobuf = ">=3.19.5,<3.20.0 || >3.20.0,<3.20.1 || >3.20.1,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<5.0.0dev"
+shapely = "<2.0.0"
+
+[package.extras]
+autologging = ["mlflow (>=1.27.0,<=2.1.1)"]
+cloud-profiler = ["tensorboard-plugin-profile (>=2.4.0,<3.0.0dev)", "tensorflow (>=2.4.0,<3.0.0dev)", "werkzeug (>=2.0.0,<2.1.0dev)"]
+datasets = ["pyarrow (>=3.0.0,<8.0dev)"]
+endpoint = ["requests (>=2.28.1)"]
+full = ["docker (>=5.0.3)", "explainable-ai-sdk (>=1.0.0)", "fastapi (>=0.71.0,<0.76.0)", "google-cloud-bigquery-storage", "google-vizier (==0.0.4)", "lit-nlp (==0.4.0)", "mlflow (>=1.27.0,<=2.1.1)", "numpy (>=1.15.0)", "pandas (>=1.0.0)", "pyarrow (>=3.0.0,<8.0dev)", "pyarrow (>=6.0.1)", "pyyaml (>=5.3,<6)", "requests (>=2.28.1)", "starlette (>=0.17.1)", "tensorflow (>=2.3.0,<3.0.0dev)", "urllib3 (>=1.21.1,<1.27)", "uvicorn[standard] (>=0.16.0)"]
+lit = ["explainable-ai-sdk (>=1.0.0)", "lit-nlp (==0.4.0)", "pandas (>=1.0.0)", "tensorflow (>=2.3.0,<3.0.0dev)"]
+metadata = ["numpy (>=1.15.0)", "pandas (>=1.0.0)"]
+pipelines = ["pyyaml (>=5.3,<6)"]
+prediction = ["docker (>=5.0.3)", "fastapi (>=0.71.0,<0.76.0)", "starlette (>=0.17.1)", "uvicorn[standard] (>=0.16.0)"]
+private-endpoints = ["requests (>=2.28.1)", "urllib3 (>=1.21.1,<1.27)"]
+tensorboard = ["tensorflow (>=2.3.0,<3.0.0dev)"]
+testing = ["docker (>=5.0.3)", "explainable-ai-sdk (>=1.0.0)", "fastapi (>=0.71.0,<0.76.0)", "google-cloud-bigquery-storage", "google-vizier (==0.0.4)", "grpcio-testing", "ipython", "kfp", "lit-nlp (==0.4.0)", "mlflow (>=1.27.0,<=2.1.1)", "numpy (>=1.15.0)", "pandas (>=1.0.0)", "pyarrow (>=3.0.0,<8.0dev)", "pyarrow (>=6.0.1)", "pytest-asyncio", "pytest-xdist", "pyyaml (>=5.3,<6)", "requests (>=2.28.1)", "scikit-learn", "starlette (>=0.17.1)", "tensorboard-plugin-profile (>=2.4.0,<3.0.0dev)", "tensorflow (>=2.3.0,<3.0.0dev)", "tensorflow (>=2.4.0,<3.0.0dev)", "urllib3 (>=1.21.1,<1.27)", "uvicorn[standard] (>=0.16.0)", "werkzeug (>=2.0.0,<2.1.0dev)", "xgboost"]
+vizier = ["google-vizier (==0.0.4)"]
+xai = ["tensorflow (>=2.3.0,<3.0.0dev)"]
+
+[[package]]
 name = "google-cloud-bigquery"
 version = "3.10.0"
 description = "Google BigQuery API client library"
@@ -627,18 +668,18 @@ pyarrow = ["pyarrow (>=0.15.0)"]
 
 [[package]]
 name = "google-cloud-bigtable"
-version = "2.15.0"
+version = "2.19.0"
 description = "Google Cloud Bigtable API client library"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "google-cloud-bigtable-2.15.0.tar.gz", hash = "sha256:89d9d6cfba3b46e38065b63e1f949354055ad6b7b14e10d8dd96f979a235d00a"},
-    {file = "google_cloud_bigtable-2.15.0-py2.py3-none-any.whl", hash = "sha256:7c89a99658bbb3e2f5ae01519949b962ee527d6079330b767a0a6db82590496c"},
+    {file = "google-cloud-bigtable-2.19.0.tar.gz", hash = "sha256:11e6cc71c8fd0e6acf8fefc608408b92aa65ab76d299190daa5237818ab4ab3a"},
+    {file = "google_cloud_bigtable-2.19.0-py2.py3-none-any.whl", hash = "sha256:daa3ad27c4a90159c32efdfb05fd5b1b86c2b62e081e2f29df83d9540e992773"},
 ]
 
 [package.dependencies]
-google-api-core = {version = ">=1.32.0,<2.0.0 || >=2.8.0,<3.0.0dev", extras = ["grpc"]}
+google-api-core = {version = ">=1.34.0,<2.0.0 || >=2.11.0,<3.0.0dev", extras = ["grpc"]}
 google-cloud-core = ">=1.4.1,<3.0.0dev"
 grpc-google-iam-v1 = ">=0.12.4,<1.0.0dev"
 proto-plus = [
@@ -787,6 +828,27 @@ proto-plus = ">=1.22.0,<2.0.0dev"
 protobuf = ">=3.19.0,<5.0.0dev"
 
 [[package]]
+name = "google-cloud-resource-manager"
+version = "1.10.2"
+description = "Google Cloud Resource Manager API client library"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "google-cloud-resource-manager-1.10.2.tar.gz", hash = "sha256:9a7bdd0347ad553376cc66ad317c5223d1ae04bdcf74edcbfcd12605cff7b510"},
+    {file = "google_cloud_resource_manager-1.10.2-py2.py3-none-any.whl", hash = "sha256:9e074c28326bd1632f1a270c20cfea1ffe98f49cf821033e65bdac55661ffbd5"},
+]
+
+[package.dependencies]
+google-api-core = {version = ">=1.34.0,<2.0.0 || >=2.11.0,<3.0.0dev", extras = ["grpc"]}
+grpc-google-iam-v1 = ">=0.12.4,<1.0.0dev"
+proto-plus = [
+    {version = ">=1.22.0,<2.0.0dev", markers = "python_version < \"3.11\""},
+    {version = ">=1.22.2,<2.0.0dev", markers = "python_version >= \"3.11\""},
+]
+protobuf = ">=3.19.5,<3.20.0 || >3.20.0,<3.20.1 || >3.20.1,<4.21.0 || >4.21.0,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4.21.4 || >4.21.4,<4.21.5 || >4.21.5,<5.0.0dev"
+
+[[package]]
 name = "google-cloud-spanner"
 version = "3.22.0"
 description = "Cloud Spanner API client library"
@@ -810,6 +872,26 @@ sqlparse = ">=0.3.0"
 [package.extras]
 libcst = ["libcst (>=0.2.5)"]
 tracing = ["opentelemetry-api (>=1.1.0)", "opentelemetry-instrumentation (>=0.20b0,<0.23dev)", "opentelemetry-sdk (>=1.1.0)"]
+
+[[package]]
+name = "google-cloud-storage"
+version = "2.1.0"
+description = "Google Cloud Storage API client library"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "google-cloud-storage-2.1.0.tar.gz", hash = "sha256:0a5e7ab1a38d2c24be8e566e50b8b0daa8af8fd49d4ab312b1fda5c147429893"},
+    {file = "google_cloud_storage-2.1.0-py2.py3-none-any.whl", hash = "sha256:53e4f6030d771526e4dbe9c6000cca44eab812f39ae8c7a810be999473e4f02c"},
+]
+
+[package.dependencies]
+google-api-core = ">=1.29.0,<3.0dev"
+google-auth = ">=1.25.0,<3.0dev"
+google-cloud-core = ">=1.6.0,<3.0dev"
+google-resumable-media = ">=1.3.0"
+protobuf = "*"
+requests = ">=2.18.0,<3.0.0dev"
 
 [[package]]
 name = "google-cloud-videointelligence"
@@ -1061,6 +1143,23 @@ files = [
 googleapis-common-protos = ">=1.5.5"
 grpcio = ">=1.48.2"
 protobuf = ">=3.12.0"
+
+[[package]]
+name = "grpcio-status"
+version = "1.51.1"
+description = "Status proto mapping for gRPC"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "grpcio-status-1.51.1.tar.gz", hash = "sha256:ac2617a3095935ebd785e2228958f24b10a0d527a0c9eb5a0863c784f648a816"},
+    {file = "grpcio_status-1.51.1-py3-none-any.whl", hash = "sha256:a52cbdc4b18f325bfc13d319ae7c7ae7a0fee07f3d9a005504d6097896d7a495"},
+]
+
+[package.dependencies]
+googleapis-common-protos = ">=1.5.5"
+grpcio = ">=1.51.1"
+protobuf = ">=4.21.6"
 
 [[package]]
 name = "hdfs"
@@ -1788,6 +1887,63 @@ files = [
 
 [package.dependencies]
 pyasn1 = ">=0.1.3"
+
+[[package]]
+name = "shapely"
+version = "1.8.5.post1"
+description = "Geometric objects, predicates, and operations"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "Shapely-1.8.5.post1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:d048f93e42ba578b82758c15d8ae037d08e69d91d9872bca5a1895b118f4e2b0"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:99ab0ddc05e44acabdbe657c599fdb9b2d82e86c5493bdae216c0c4018a82dee"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:99a2f0da0109e81e0c101a2b4cd8412f73f5f299e7b5b2deaf64cd2a100ac118"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:6fe855e7d45685926b6ba00aaeb5eba5862611f7465775dacd527e081a8ced6d"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:ec14ceca36f67cb48b34d02d7f65a9acae15cd72b48e303531893ba4a960f3ea"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d8a2b2a65fa7f97115c1cd989fe9d6f39281ca2a8a014f1d4904c1a6e34d7f25"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-win32.whl", hash = "sha256:21776184516a16bf82a0c3d6d6a312b3cd15a4cabafc61ee01cf2714a82e8396"},
+    {file = "Shapely-1.8.5.post1-cp310-cp310-win_amd64.whl", hash = "sha256:a354199219c8d836f280b88f2c5102c81bb044ccea45bd361dc38a79f3873714"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:783bad5f48e2708a0e2f695a34ed382e4162c795cb2f0368b39528ac1d6db7ed"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:a23ef3882d6aa203dd3623a3d55d698f59bfbd9f8a3bfed52c2da05a7f0f8640"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:ab38f7b5196ace05725e407cb8cab9ff66edb8e6f7bb36a398e8f73f52a7aaa2"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8d086591f744be483b34628b391d741e46f2645fe37594319e0a673cc2c26bcf"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4728666fff8cccc65a07448cae72c75a8773fea061c3f4f139c44adc429b18c3"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-win32.whl", hash = "sha256:84010db15eb364a52b74ea8804ef92a6a930dfc1981d17a369444b6ddec66efd"},
+    {file = "Shapely-1.8.5.post1-cp311-cp311-win_amd64.whl", hash = "sha256:48dcfffb9e225c0481120f4bdf622131c8c95f342b00b158cdbe220edbbe20b6"},
+    {file = "Shapely-1.8.5.post1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:2fd15397638df291c427a53d641d3e6fd60458128029c8c4f487190473a69a91"},
+    {file = "Shapely-1.8.5.post1-cp36-cp36m-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:a74631e511153366c6dbe3229fa93f877e3c87ea8369cd00f1d38c76b0ed9ace"},
+    {file = "Shapely-1.8.5.post1-cp36-cp36m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:66bdac74fbd1d3458fa787191a90fa0ae610f09e2a5ec398c36f968cc0ed743f"},
+    {file = "Shapely-1.8.5.post1-cp36-cp36m-win32.whl", hash = "sha256:6d388c0c1bd878ed1af4583695690aa52234b02ed35f93a1c8486ff52a555838"},
+    {file = "Shapely-1.8.5.post1-cp36-cp36m-win_amd64.whl", hash = "sha256:be9423d5a3577ac2e92c7e758bd8a2b205f5e51a012177a590bc46fc51eb4834"},
+    {file = "Shapely-1.8.5.post1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:5d7f85c2d35d39ff53c9216bc76b7641c52326f7e09aaad1789a3611a0f812f2"},
+    {file = "Shapely-1.8.5.post1-cp37-cp37m-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:adcf8a11b98af9375e32bff91de184f33a68dc48b9cb9becad4f132fa25cfa3c"},
+    {file = "Shapely-1.8.5.post1-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:753ed0e21ab108bd4282405b9b659f2e985e8502b1a72b978eaa51d3496dee19"},
+    {file = "Shapely-1.8.5.post1-cp37-cp37m-win32.whl", hash = "sha256:65b21243d8f6bcd421210daf1fabb9de84de2c04353c5b026173b88d17c1a581"},
+    {file = "Shapely-1.8.5.post1-cp37-cp37m-win_amd64.whl", hash = "sha256:370b574c78dc5af3a198a6da5d9b3d7c04654bd2ef7e80e80a3a0992dfb2d9cd"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-macosx_10_9_universal2.whl", hash = "sha256:532a55ee2a6c52d23d6f7d1567c8f0473635f3b270262c44e1b0c88096827e22"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:3480657460e939f45a7d359ef0e172a081f249312557fe9aa78c4fd3a362d993"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:b65f5d530ba91e49ffc7c589255e878d2506a8b96ffce69d3b7c4500a9a9eaf8"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:147066da0be41b147a61f8eb805dea3b13709dbc873a431ccd7306e24d712bc0"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:c2822111ddc5bcfb116e6c663e403579d0fe3f147d2a97426011a191c43a7458"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4b47bb6f9369e8bf3e6dbd33e6a25a47ee02b2874792a529fe04a49bf8bc0df6"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-win32.whl", hash = "sha256:2e0a8c2e55f1be1312b51c92b06462ea89e6bb703fab4b114e7a846d941cfc40"},
+    {file = "Shapely-1.8.5.post1-cp38-cp38-win_amd64.whl", hash = "sha256:0d885cb0cf670c1c834df3f371de8726efdf711f18e2a75da5cfa82843a7ab65"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:0b4ee3132ee90f07d63db3aea316c4c065ed7a26231458dda0874414a09d6ba3"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:02dd5d7dc6e46515d88874134dc8fcdc65826bca93c3eecee59d1910c42c1b17"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:c6a9a4a31cd6e86d0fbe8473ceed83d4fe760b19d949fb557ef668defafea0f6"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:38f0fbbcb8ca20c16451c966c1f527cc43968e121c8a048af19ed3e339a921cd"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:78fb9d929b8ee15cfd424b6c10879ce1907f24e05fb83310fc47d2cd27088e40"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:89164e7a9776a19e29f01369a98529321994e2e4d852b92b7e01d4d9804c55bf"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-win32.whl", hash = "sha256:8e59817b0fe63d34baedaabba8c393c0090f061917d18fc0bcc2f621937a8f73"},
+    {file = "Shapely-1.8.5.post1-cp39-cp39-win_amd64.whl", hash = "sha256:e9c30b311de2513555ab02464ebb76115d242842b29c412f5a9aa0cac57be9f6"},
+    {file = "Shapely-1.8.5.post1.tar.gz", hash = "sha256:ef3be705c3eac282a28058e6c6e5503419b250f482320df2172abcbea642c831"},
+]
+
+[package.extras]
+all = ["numpy", "pytest", "pytest-cov"]
+test = ["pytest", "pytest-cov"]
+vectorized = ["numpy"]
 
 [[package]]
 name = "six"
