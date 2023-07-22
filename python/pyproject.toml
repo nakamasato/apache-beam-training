@@ -8,7 +8,7 @@ packages = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
-wheel = "^0.40.0"
+wheel = "^0.41.0"
 apache-beam = {extras = ["gcp"], version = "^2.45.0"}
 protobuf = "4.23.4"
 
