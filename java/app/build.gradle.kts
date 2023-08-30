@@ -30,7 +30,7 @@ dependencies {
     implementation("org.apache.beam:beam-sdks-java-core:2.49.0")
 
     // https://cloud.google.com/pubsub/docs/publish-receive-messages-client-library#install
-    implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.49.0")
+    implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.50.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-examples-java
     implementation("org.apache.beam:beam-examples-java:2.50.0")
@@ -54,7 +54,7 @@ tasks.named<Test>("test") {
 
 if (project.hasProperty("dataflow-runner")) {
     dependencies {
-        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.49.0")
+        runtimeOnly("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.50.0")
     }
 }
 
