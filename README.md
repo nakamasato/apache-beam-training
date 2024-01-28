@@ -18,6 +18,7 @@ Java:
 Python:
 1. [Read and write PubSub](docs/python/01-read-and-write-pubsub.md)
 1. [Read and write PubSub proto message](docs/python/02-read-and-write-pubsub-proto-message.md)
+1. [Read and write PubSub with deduplication](https://cloud.google.com/blog/products/data-analytics/handling-duplicate-data-in-streaming-pipeline-using-pubsub-dataflow) (ToDo)
 
 ## References
 
