@@ -33,7 +33,7 @@ dependencies {
     implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.58.1")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-examples-java
-    implementation("org.apache.beam:beam-examples-java:2.58.1")
+    implementation("org.apache.beam:beam-examples-java:2.59.0")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-runners-direct-java
     runtimeOnly("org.apache.beam:beam-runners-direct-java:2.59.0")
