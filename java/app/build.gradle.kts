@@ -27,7 +27,7 @@ dependencies {
     implementation("com.google.guava:guava:33.3.0-jre")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core
-    implementation("org.apache.beam:beam-sdks-java-core:2.58.1")
+    implementation("org.apache.beam:beam-sdks-java-core:2.59.0")
 
     // https://cloud.google.com/pubsub/docs/publish-receive-messages-client-library#install
     implementation("org.apache.beam:beam-runners-google-cloud-dataflow-java:2.59.0")
