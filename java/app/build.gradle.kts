@@ -24,7 +24,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:33.4.7-jre")
+    implementation("com.google.guava:guava:33.4.8-jre")
 
     // https://mvnrepository.com/artifact/org.apache.beam/beam-sdks-java-core
     implementation("org.apache.beam:beam-sdks-java-core:2.64.0")
