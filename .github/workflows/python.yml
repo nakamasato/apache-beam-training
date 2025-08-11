@@ -20,7 +20,7 @@ jobs:
           python-version: "3.13"
 
       - name: Check-out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Load cached Poetry installation
         id: cached-poetry
